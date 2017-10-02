@@ -24,3 +24,12 @@ void MainWindow::initTreeView()
     treeView->setModel(dirModel.data());
     treeView->setRootIndex(dirModel->index(QDir::currentPath()));
 }
+
+void MainWindow::on_pushButton_clicked()
+{
+    QString newDir = QFileDialog::getExistingDirectory(this, tr("Open Directory"),
+                                                    QDir::currentPath(),
+                                                    QFileDialog::ShowDirsOnly
+                                                    | QFileDialog::DontResolveSymlinks);
+    treeView->setRootIndex(dirModel->index(newDir));
+}
